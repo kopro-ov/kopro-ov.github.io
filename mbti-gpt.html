@@ -291,7 +291,7 @@
         const resetButton = document.querySelector('#reset-button');
         resetButton.addEventListener('click', function () {
             document.querySelector('.mbti-result').classList.remove('show');
-            document.querySelector('.mbti-result p').textContent = '';
+            document.querySelector('.mbti-result .text').textContent = '';
             document.querySelector('.question-container > .question').classList.add('show');
             mbtiScores = [0, 0, 0, 0];
         });
