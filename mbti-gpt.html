@@ -7,6 +7,47 @@
     <title>MBTI 테스트</title>
 
     <style>
+        :root {
+            --bg-color: #fff;
+            /* 배경색 (라이트모드) */
+            --text-color: #333;
+            /* 글자색 (라이트모드) */
+            --btn-bg-color: #4CAF50;
+            /* 버튼 배경색 (라이트모드) */
+            --btn-text-color: #fff;
+            /* 버튼 글자색 (라이트모드) */
+
+            --btn-bg-2-color: #4d91b8;
+            /* 버튼 배경색 (라이트모드) */
+            --btn-text-2-color: #fff;
+            /* 버튼 글자색 (라이트모드) */
+            --btn-hover-bg-2-color: #4d91b8;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #333;
+                /* 배경색 (다크모드) */
+                --text-color: #fff;
+                /* 글자색 (다크모드) */
+                --btn-bg-color: #45a049;
+                /* 버튼 배경색 (다크모드) */
+                --btn-text-color: #fff;
+                /* 버튼 글자색 (다크모드) */
+
+                --btn-bg-2-color: #79a6d2;
+                /* 버튼 배경색 (라이트모드) */
+                --btn-text-2-color: #fff;
+                /* 버튼 글자색 (라이트모드) */      
+                --btn-hover-bg-2-color: #8db3e2;
+            }
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
         .question,
         .mbti-result {
             display: none;
@@ -22,7 +63,7 @@
             /* 질문 글자 크기 */
             font-family: Arial, sans-serif;
             /* 글꼴 설정 */
-            color: #333;
+            color: var(--text-color);
             /* 글자색 */
             margin-bottom: 20px;
             /* 질문간의 간격 */
@@ -41,16 +82,17 @@
             justify-content: space-between;
         }
 
-        
-        .score-btn, #reset-button {
+
+        .score-btn,
+        #reset-button {
             flex: 1;
             margin: 5px;
             padding: 10px 20px;
-            background-color: #4CAF50;
+            background-color: var(--btn-bg-color);
             /* 버튼의 기본 배경색 */
             border: none;
             /* 테두리 제거 */
-            color: white;
+            color: var(--btn-text-color);
             /* 버튼 안쪽 여백 */
             text-align: center;
             /* 글자 정렬 */
@@ -69,17 +111,15 @@
         }
 
         .score-btn:hover {
-            background-color: #45a049;
-            /* 마우스 오버 시 버튼 배경색 */
-            color: white;
-            /* 마우스 오버 시 글자색 */
+            background-color:  var(--btn-hover-bg-color);
         }
 
         #reset-button {
-            background-color: #87ceeb;
+            background-color: var(--btn-bg-2-color);
         }
+
         #reset-button:hover {
-            background-color: #4d91b8;
+            background-color: var(--btn-hover-bg-2-color);
         }
 
         @media screen and (max-width: 660px) {
