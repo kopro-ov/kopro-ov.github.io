@@ -198,7 +198,7 @@
         function calculateScore(target) {
 
             score = JSON.parse(target.dataset['score']);
-            mbtiScores.forEach((score, index) => mbtiScores[index] += score[index]);
+            score.forEach((value, index) => mbtiScores[index] += value);
         }
 
         function calculateMBTI(scores) {
