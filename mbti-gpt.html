@@ -16,6 +16,77 @@
         .mbti-result.show {
             display: block;
         }
+
+        .question {
+            font-size: 18px;
+            /* 질문 글자 크기 */
+            font-family: Arial, sans-serif;
+            /* 글꼴 설정 */
+            color: #333;
+            /* 글자색 */
+            margin-bottom: 20px;
+            /* 질문간의 간격 */
+        }
+
+        .question p {
+            font-weight: bold;
+            /* 질문 내용 글자 굵기 */
+            margin-bottom: 10px;
+            /* 질문 내용과 선택지 간의 간격 */
+        }
+
+        .choices-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        
+        .score-btn, #reset-button {
+            flex: 1;
+            margin: 5px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            /* 버튼의 기본 배경색 */
+            border: none;
+            /* 테두리 제거 */
+            color: white;
+            /* 버튼 안쪽 여백 */
+            text-align: center;
+            /* 글자 정렬 */
+            text-decoration: none;
+            /* 글자 밑줄 제거 */
+            display: inline-block;
+            /* 인라인 블록 요소로 설정 */
+            font-size: 14px;
+            /* 버튼 간격 */
+            cursor: pointer;
+            /* 마우스 커서를 포인터로 설정 */
+            border-radius: 16px;
+            /* 버튼 모서리 둥글게 */
+            transition-duration: 0.4s;
+            /* 마우스 오버 시 효과 전환 지속 시간 */
+        }
+
+        .score-btn:hover {
+            background-color: #45a049;
+            /* 마우스 오버 시 버튼 배경색 */
+            color: white;
+            /* 마우스 오버 시 글자색 */
+        }
+
+        #reset-button {
+            background-color: #87ceeb;
+        }
+        #reset-button:hover {
+            background-color: #4d91b8;
+        }
+
+        @media screen and (max-width: 660px) {
+            .score-btn {
+                min-width: calc(100% - 40px);
+            }
+        }
     </style>
 
 
@@ -28,7 +99,7 @@
     <div class="question-container" data-index="1">
         <!-- I/E 축 -->
         <div class="question show">
-            <p>1. 당신은 대개 어디서 에너지를 얻나요? 집에서 혼자 있거나, 사람들과 함께 있을 때?</p>
+            <p>1. 당신은 어디서 에너지를 얻나요? </p>
             <div class="choice-container">
                 <button class="score-btn" data-score="[1, 0, 0, 0]">집에서 혼자 있을 때</button>
                 <button class="score-btn" data-score="[-0.5, 0, 0, 0]">혼자 있는 것도 좋지만, 사람들과 함께 있을 때가 더 좋음</button>
@@ -39,17 +110,17 @@
 
         <!-- N/S 축 -->
         <div class="question">
-            <h3>2. 당신은 어떻게 새로운 아이디어를 만들거나 문제를 해결하나요? 직관적으로 인지하거나, 구체적인 사실을 살펴보고 분석하나요?</h3>
+            <h3>2. 당신은 어떻게 새로운 아이디어를 만들거나 문제를 해결하나요? </h3>
             <div class="choice-container">
                 <button class="score-btn" data-score="[0, 1, 0, 0]">직관적으로 인지해요.</button>
                 <button class="score-btn" data-score="[0, -1, 0, 0]">구체적인 사실을 살펴보고 분석해요.</button>
-                <button class="score-btn" data-score="[0, 0, 0, 0]">두 가지 다 적절히 섞어서 해결해요.</button>                
+                <button class="score-btn" data-score="[0, 0, 0, 0]">두 가지 다 적절히 섞어서 해결해요.</button>
             </div>
         </div>
 
         <!--T/F축 -->
         <div class="question">
-            <h3>3. 당신이 중요한 결정을 내릴 때, 주로 어떤 방식으로 판단하나요? 객관적인 기준을 따르거나, 자신의 감정과 가치관을 따르나요?</h3>
+            <h3>3. 당신이 중요한 결정을 내릴 때, 주로 어떤 방식으로 판단하나요? </h3>
             <div class="choices-container">
                 <button class="score-btn" data-score="[0, 0, 1, 0]">객관적인 기준을 따라 판단해요.</button>
                 <button class="score-btn" data-score="[0, 0, -1, 0]">자신의 감정과 가치관을 따라 판단해요.</button>
@@ -137,7 +208,7 @@
 
 
         <div class="question">
-            <h3>10. 당신이 가진 결점은 무엇인가요? 행동이 지나치게 강박적이거나, 과도한 자신감으로 인해 다른 사람을 무시하는 경우가 있나요?</h3>
+            <h3>10. 당신이 가진 결점은 무엇인가요?</h3>
             <div class="choices">
                 <button class="score-btn" data-score="[0, 0, 0, 1]">네, 강박적인 경향이 있어요.</button>
                 <button class="score-btn" data-score="[0, 1, 0, 0]">네, 자신감이 지나치게 강해요.</button>
@@ -149,7 +220,7 @@
     </div>
 
     <div class="mbti-result">
-        <p class="text"></p>
+        <div>MBTI: <span class="text"></span></div>
         <button id="reset-button">다시하기</button>
     </div>
 
@@ -191,7 +262,7 @@
                 // 마지막 질문이 끝나면 결과를 계산한다
                 const mbti = calculateMBTI(mbtiScores);
                 document.querySelector('.mbti-result').classList.add('show');
-                document.querySelector('.mbti-result p').textContent = mbti;
+                document.querySelector('.mbti-result .text').textContent = mbti;
             }
         }
 
@@ -222,7 +293,7 @@
             document.querySelector('.mbti-result').classList.remove('show');
             document.querySelector('.mbti-result p').textContent = '';
             document.querySelector('.question-container > .question').classList.add('show');
-            mbtiScores = [0,0,0,0];
+            mbtiScores = [0, 0, 0, 0];
         });
 
     </script>
