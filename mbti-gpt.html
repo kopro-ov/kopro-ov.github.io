@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTI 테스트</title>
+
+    <style>
+        .question,
+        .mbti-result {
+            display: none;
+        }
+
+        .question.show,
+        .mbti-result.show {
+            display: block;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <!-- 여기에 퀴즈 HTML 코vksekfodzm드를 작성합니다. -->
+    <!-- 여기에 결과 HTML 코드를 작성합니다. -->
+    <!-- 여기에 자바스크립트 코드를 작성합니다. -->
+    <div class="question-container" data-index="1">
+        <div class="question show">
+            <p>당신은 대개 어디서 에너지를 얻나요? 집에서 혼자 있거나, 사람들과 함께 있을 때?</p>
+            <div class="choice-container">
+                <button class="score-btn" data-score="[1, 0, 0, 0]">집에서 혼자 있을 때</button>
+                <button class="score-btn" data-score="[0, 0, 0, 0]">혼자 있는 것도 좋지만, 사람들과 함께 있을 때가 더 좋음</button>
+                <button class="score-btn" data-score="[0, 0, 0, 0]">혼자 있는 것도 좋고, 사람들과 함께 있을 때도 좋음</button>
+                <button class="score-btn" data-score="[0, 0, 0, 1]">사람들과 함께 있을 때</button>
+                <button class="score-btn" data-score="[0, 0, 0, 0]">잘 모르겠음</button>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>2. 당신은 어떻게 새로운 아이디어를 만들거나 문제를 해결하나요? 직관적으로 인지하거나, 구체적인 사실을 살펴보고 분석하나요?</h3>
+            <div class="choice-container">
+                <button class="score-btn" data-score="[1, 0, 0, 0]">직관적으로 인지해요.</button>
+                <button class="score-btn" data-score="[0, 1, 0, 0]">구체적인 사실을 살펴보고 분석해요.</button>
+                <button class="score-btn" data-score="[0.5, 0.5, 0, 0]">두 가지 다 적절히 섞어서 해결해요.</button>
+                <button class="score-btn" data-score="[0, 0, 0, 0]">잘 모르겠어요.</button>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>3. 당신이 중요한 결정을 내릴 때, 주로 어떤 방식으로 판단하나요? 객관적인 기준을 따르거나, 자신의 감정과 가치관을 따르나요?</h3>
+            <div class="choices-container">
+                <button class="score-btn" data-score="[0, 0, 1, 0]">객관적인 기준을 따라 판단해요.</button>
+                <button class="score-btn" data-score="[0, 0, 0, 1]">자신의 감정과 가치관을 따라 판단해요.</button>
+                <button class="score-btn" data-score="[0.5, 0.5, 0.5, 0.5]">두 가지를 적절히 섞어 판단해요.</button>
+                <button class="score-btn" data-score="[0, 0, 0, 0]">잘 모르겠어요.</button>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>4. 당신이 일상생활에서 대처하는 방식은 어떤가요? 주로 계획적으로 대처하나요, 아니면 즉흥적으로 대처하나요?</p>
+            <div class="choices-container">
+                <button class="score-btn" data-score="[0, 1, 0, 1]">주로 계획적으로 대처해요.</button>
+                <button class="score-btn" data-score="[1, 0, 1, 0]">보통 즉흥적으로 대처해요.</button>
+                <button class="score-btn" data-score="[0.5, 0.5, 0.5, 0.5]">두 가지 다 적절히 섞어서 대처해요.</button>
+                <button class="score-btn" data-score="[0, 0, 0, 0]">잘 모르겠어요.</button>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>5. 어떤 활동을 즐기나요?</p>
+            <div class="choices-container">
+                <button class="score-btn" data-score="[0, 1, 0, 0]">독서</button>
+                <button class="score-btn" data-score="[0, 0, 0, 0]">영화/TV 시청</button>
+                <button class="score-btn" data-score="[0, 0, 0, 0]">음악 감상</button>
+                <button class="score-btn" data-score="[1, 0, 0, 0]">스포츠</button>
+                <button class="score-btn" data-score="[0, 0, 0, 0]">요리/음식 만들기</button>
+                <button class="score-btn" data-score="[1, 0, 0, 0]">여행</button>
+                <button class="score-btn" data-score="[0, 0, 0, 0]">쇼핑/잡화</button>
+                <button class="score-btn" data-score="[-1, 0, 0, 0]">게임</button>
+                <button class="score-btn" data-score="[0, 0, 0, 0]">기타</button>
+            </div>
+        </div>
+
+
+        <div class="question">
+            <p>6. 당신은 사물이나 사람의 모습, 색깔, 냄새, 소리 등을 더 중요하게 생각하나요?</p>
+            <div class="choices-container">
+                <button class="score-btn" data-score="[0, 0, 0, 1]">사물의 모습</button>
+                <button class="score-btn" data-score="[0, 0, 1, 0]">색깔</button>
+                <button class="score-btn" data-score="[0, 0, 1, 0]">냄새</button>
+                <button class="score-btn" data-score="[0, 0, 0, 1]">소리</button>
+                <button class="score-btn" data-score="[0, 0, 0, 0]">모두 중요하다</button>
+            </div>
+        </div>
+
+
+        <div class="question">
+
+            <h3>7. 어떤 방식으로 문제를 해결하나요? </h3>
+            <div class="choices">
+                <button class="score-btn" data-score="[0, 1, 0, 1]">차근차근 계획을 세우고, 한 가지씩 해결해요.</button>
+                <button class="score-btn" data-score="[1, 0, 1, 0]">여러 가지 방법을 시도해보고, 즉흥적으로 문제를 해결해요.</button>
+                <button class="score-btn" data-score="[0.5, 0.5, 0.5, 0.5]">두 가지 다 적절히 섞어서 해결해요.</button>
+                <button class="score-btn" data-score="[0, 0, 0, 0]">잘 모르겠어요.</button>
+            </div>
+
+
+        </div>
+
+        <div class="question">
+
+            <p>8. 당신이 가치있는 것으로 생각하는 것은 무엇인가요?</p>
+            <div class="choices">
+                <button class="score-btn" data-score="[0, 0, 1, 0]">자유</button>
+                <button class="score-btn" data-score="[0, 0, 0, 1]">독립성</button>
+                <button class="score-btn" data-score="[0, 1, 0, 0]">성취</button>
+                <button class="score-btn" data-score="[1, 0, 0, 0]">창의성</button>
+                <button class="score-btn" data-score="[0, 1, 1, 0]">관계</button>
+                <button class="score-btn" data-score="[0, 0, 0, 0]">잘 모르겠어요.</button>
+            </div>
+
+
+        </div>
+
+
+        <div class="question">
+            <h3>9. 당신이 주로 표현하는 감정은 무엇인가요?</h3>
+            <div class="choices">
+                <button class="score-btn" data-score="[0, 1, 0, 0]">즐거움</button>
+                <button class="score-btn" data-score="[1, 0, 0, 0]">슬픔</button>
+                <button class="score-btn" data-score="[0, 0, 1, 0]">분노</button>
+                <button class="score-btn" data-score="[0, 0, 0, 1]">불안</button>
+                <button class="score-btn" data-score="[0, 0, 0, 0]">잘 모르겠어요.</button>
+            </div>
+        </div>
+
+
+        <div class="question">
+            <h3>10. 당신이 가진 결점은 무엇인가요? 행동이 지나치게 강박적이거나, 과도한 자신감으로 인해 다른 사람을 무시하는 경우가 있나요?</h3>
+            <div class="choices">
+                <button class="score-btn" data-score="[0, 0, 1, 0]">네, 강박적인 경향이 있어요.</button>
+                <button class="score-btn" data-score="[0, 0, 0, 1]">네, 자신감이 지나치게 강해요.</button>
+                <button class="score-btn" data-score="[0, 0, 1, 1]">네, 둘 다 해당돼요.</button>
+                <button class="score-btn" data-score="[0, 0, 0, 0]">아니요, 해당되지 않아요.</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="mbti-result">
+        <p class="text"></p>
+        <button id="reset-button">다시하기</button>
+    </div>
+
+
+
+    <script>
+        const questionContainers = document.querySelectorAll('.question-container');
+        const resultContainer = document.querySelector('.result-container');
+        const mbtiResult = document.querySelector('.mbti-result');
+
+        // 선택한 점수를 저장할 배열을 만듭니다.
+        let mbtiScores = [0, 0, 0, 0];
+
+        // 현재 보여지고 있는 질문의 인덱스를 저장하는 변수를 만듭니다.
+        let currentQuestion = 0;
+
+        const scoreBtns = document.querySelectorAll(".score-btn");
+
+        scoreBtns.forEach(button => {
+            button.addEventListener('click', showNextQuestion, false);
+        });
+
+        function showNextQuestion() {
+
+            // 현재 질문에 대한 선택지 점수 계산하여 저장한다
+            calculateScore(this);
+
+            // 현재 보이는 질문을 찾아서 숨긴다
+            const currentQuestion = document.querySelector('.question.show');
+            if (currentQuestion) {
+                currentQuestion.classList.remove('show');
+            }
+
+            // 다음 질문을 보이게 한다
+            const nextQuestion = currentQuestion.nextElementSibling;
+            if (nextQuestion) {
+                nextQuestion.classList.add('show');
+            } else {
+                // 마지막 질문이 끝나면 결과를 계산한다
+                const mbti = calculateMBTI(mbtiScores);
+                document.querySelector('.mbti-result').classList.add('show');
+                document.querySelector('.mbti-result p').textContent = mbti;
+            }
+        }
+
+        function calculateScore(target) {
+
+            score = JSON.parse(target.dataset['score']);
+            mbtiScores.forEach((score, index) => mbtiScores[index] += score[index]);
+        }
+
+        function calculateMBTI(scores) {
+            const iScore = scores[0];
+            const nScore = scores[1];
+            const tScore = scores[2];
+            const jScore = scores[3];
+
+            const iLetter = iScore >= 0 ? "I" : "E";
+            const nLetter = nScore >= 0 ? "N" : "S";
+            const tLetter = tScore >= 0 ? "T" : "F";
+            const jLetter = jScore >= 0 ? "J" : "P";
+
+            console.log(iLetter + nLetter + tLetter + jLetter);
+            return iLetter + nLetter + tLetter + jLetter;
+        }
+
+
+        const resetButton = document.querySelector('#reset-button');
+        resetButton.addEventListener('click', function () {
+            document.querySelector('.mbti-result').classList.remove('show');
+            document.querySelector('.mbti-result p').textContent = '';
+            document.querySelector('.question-container > .question').classList.add('show');
+        });
+
+    </script>
+
+</body>
+
+</html>
