@@ -50,28 +50,16 @@
             color: var(--text-color);
         }
 
-        .question,
-        .mbti-result {
-            display: none;
-        }
-
         .question-container {
             max-width: 800px;
             margin: 0 auto;
             border-radius: 10px;
-            padding: 30px;
+            padding: 10px;
         }
 
-        .question {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .choice-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+        .question,
+        .mbti-result {
+            display: none;
         }
 
         .question.show,
@@ -81,20 +69,15 @@
 
         .question {
             font-size: 18px;
-            /* 질문 글자 크기 */
+            font-weight: bold;
             font-family: Arial, sans-serif;
-            /* 글꼴 설정 */
             color: var(--text-color);
-            /* 글자색 */
             margin-bottom: 20px;
-            /* 질문간의 간격 */
         }
 
         .question p {
             font-weight: bold;
-            /* 질문 내용 글자 굵기 */
             margin-bottom: 10px;
-            /* 질문 내용과 선택지 간의 간격 */
         }
 
         .choices-container {
@@ -103,32 +86,21 @@
             justify-content: space-between;
         }
 
-
         .score-btn,
         #reset-button {
             flex: 1;
             margin: 5px;
             padding: 10px 20px;
             background-color: var(--btn-bg-color);
-            /* 버튼의 기본 배경색 */
             border: none;
-            /* 테두리 제거 */
             color: var(--btn-text-color);
-            /* 버튼 안쪽 여백 */
             text-align: center;
-            /* 글자 정렬 */
             text-decoration: none;
-            /* 글자 밑줄 제거 */
             display: inline-block;
-            /* 인라인 블록 요소로 설정 */
             font-size: 14px;
-            /* 버튼 간격 */
             cursor: pointer;
-            /* 마우스 커서를 포인터로 설정 */
             border-radius: 16px;
-            /* 버튼 모서리 둥글게 */
             transition-duration: 0.4s;
-            /* 마우스 오버 시 효과 전환 지속 시간 */
         }
 
         .score-btn:hover {
@@ -145,7 +117,7 @@
 
         @media screen and (max-width: 660px) {
             .score-btn {
-                min-width: calc(100% - 40px);
+                min-width: calc(100%);
             }
         }
     </style>
