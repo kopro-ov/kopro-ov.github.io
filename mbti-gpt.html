@@ -13,6 +13,7 @@
             --text-color: #333;
             /* 글자색 (라이트모드) */
             --btn-bg-color: #4CAF50;
+            --btn-hover-bg-color: #3d8f40;
             /* 버튼 배경색 (라이트모드) */
             --btn-text-color: #fff;
             /* 버튼 글자색 (라이트모드) */
@@ -31,6 +32,7 @@
                 --text-color: #fff;
                 /* 글자색 (다크모드) */
                 --btn-bg-color: #45a049;
+                --btn-hover-bg-color: #285c2a;
                 /* 버튼 배경색 (다크모드) */
                 --btn-text-color: #fff;
                 /* 버튼 글자색 (다크모드) */
@@ -38,7 +40,7 @@
                 --btn-bg-2-color: #79a6d2;
                 /* 버튼 배경색 (라이트모드) */
                 --btn-text-2-color: #fff;
-                /* 버튼 글자색 (라이트모드) */      
+                /* 버튼 글자색 (라이트모드) */
                 --btn-hover-bg-2-color: #8db3e2;
             }
         }
@@ -51,6 +53,25 @@
         .question,
         .mbti-result {
             display: none;
+        }
+
+        .question-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 10px;
+            padding: 30px;
+        }
+
+        .question {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .choice-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
         }
 
         .question.show,
@@ -111,7 +132,7 @@
         }
 
         .score-btn:hover {
-            background-color:  var(--btn-hover-bg-color);
+            background-color: var(--btn-hover-bg-color);
         }
 
         #reset-button {
@@ -150,7 +171,7 @@
 
         <!-- N/S 축 -->
         <div class="question">
-            <h3>2. 당신은 어떻게 새로운 아이디어를 만들거나 문제를 해결하나요? </h3>
+            <p>2. 당신은 어떻게 새로운 아이디어를 만들거나 문제를 해결하나요? </p>
             <div class="choice-container">
                 <button class="score-btn" data-score="[0, 1, 0, 0]">직관적으로 인지해요.</button>
                 <button class="score-btn" data-score="[0, -1, 0, 0]">구체적인 사실을 살펴보고 분석해요.</button>
@@ -160,7 +181,7 @@
 
         <!--T/F축 -->
         <div class="question">
-            <h3>3. 당신이 중요한 결정을 내릴 때, 주로 어떤 방식으로 판단하나요? </h3>
+            <p>3. 당신이 중요한 결정을 내릴 때, 주로 어떤 방식으로 판단하나요? </p>
             <div class="choices-container">
                 <button class="score-btn" data-score="[0, 0, 1, 0]">객관적인 기준을 따라 판단해요.</button>
                 <button class="score-btn" data-score="[0, 0, -1, 0]">자신의 감정과 가치관을 따라 판단해요.</button>
@@ -209,7 +230,7 @@
 
         <div class="question">
 
-            <h3>7. 어떤 방식으로 문제를 해결하나요? </h3>
+            <p>7. 어떤 방식으로 문제를 해결하나요? </p>
             <div class="choices">
                 <button class="score-btn" data-score="[-1, 0, 0, 1]">차근차근 계획을 세우고, 한 가지씩 해결해요.</button>
                 <button class="score-btn" data-score="[1, 0, 0, -1]">여러 가지 방법을 시도해보고, 즉흥적으로 문제를 해결해요.</button>
@@ -236,7 +257,7 @@
 
 
         <div class="question">
-            <h3>9. 당신이 주로 표현하는 감정은 무엇인가요?</h3>
+            <p>9. 당신이 주로 표현하는 감정은 무엇인가요?</p>
             <div class="choices">
                 <button class="score-btn" data-score="[0, 0, 0, 1]">즐거움</button>
                 <button class="score-btn" data-score="[1, 0, 0, 0]">슬픔</button>
