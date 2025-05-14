@@ -95,8 +95,10 @@ body{
 
 /* === 오디오 플레이어 === */
 .bgm-player{
-  position:fixed;bottom:16px;left:50%;transform:translateX(-50%);
-  width:240px;outline:none;
+  outline:none;
+  width: 240px;
+  margin: 10px auto;
+
 }
 </style>
 </head>
@@ -118,13 +120,13 @@ body{
     <div class="greeting">
       텔레닉스 구성원 모두 행복하세요 😊<br /><span>- 고보연 드림 -</span>
     </div>
-  </div>
+    <!-- 🎵 배경음 (자동 재생·반복) -->
+    <audio class="bgm-player" id="bgm"
+          src="[2011응원가]-나는행복합니다.mp3"
+          controls autoplay loop playsinline
+          aria-label="나는 행복합니다"></audio>
 
-  <!-- 🎵 배경음 (자동 재생·반복) -->
-  <audio class="bgm-player" id="bgm"
-         src="[2011응원가]-나는행복합니다.mp3"
-         controls autoplay loop playsinline
-         aria-label="나는 행복합니다"></audio>
+  </div>
 
 <script>
 /* 꽃잎 생성 */
@@ -139,7 +141,6 @@ for(let l=0;l<layers;l++){
     box.appendChild(p);
   }
 }
-/* bgm 소스 6 고정 */  
 document.getElementById('bgm').volume = 0.6;
 </script>
 </body>
