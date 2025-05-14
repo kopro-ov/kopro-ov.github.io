@@ -30,10 +30,14 @@ body{display:flex;justify-content:center;align-items:center;
 
 /* === 인사 문구 === */
 .greeting{
-  position:absolute;top:40px;left:50%;transform:translateX(-50%);
+  position:absolute;top:20px;left:50%;transform:translateX(-50%);
   font-family:'Nanum Brush Script',cursive;
   font-size:2.6rem;font-weight:600;letter-spacing:-0.5px;
   color:#222;text-align:center;pointer-events:none;
+  width: 100%;
+}
+.greeting span {
+  font-size: 1.8rem;
 }
 
 /* === 흔들림 래퍼 === */
@@ -87,11 +91,17 @@ body{display:flex;justify-content:center;align-items:center;
   75%  {transform:rotate(8deg);}   /* 오른쪽 */
   100% {transform:rotate(0deg);}   /* 중앙 통과 */
 }
+
+/* 오디오 플레이어 고정 */
+.bgm-player{
+  position:fixed;bottom:16px;left:50%;transform:translateX(-50%);
+  width:240px;outline:none;
+}
 </style>
 </head>
 <body>
   <div class="stage">
-    <h1 class="greeting">텔레닉스 구성원 모두 행복하세요 😊</h1>
+    <div class="greeting">텔레닉스 구성원 모두 행복하세요 😊<br /><span>- 고보연 드림 -</span></div>
 
     <div class="bouquet">
       <div class="flower">
@@ -105,20 +115,23 @@ body{display:flex;justify-content:center;align-items:center;
     </div>
   </div>
 
-<script>
-/* === petals generation === */
-const NUM_PETALS=12, BASE_RADIUS=-45, RING_GAP=15;
-const petalsContainer=document.getElementById('petals');
-const layerCount=Math.round(Math.abs(BASE_RADIUS)/RING_GAP)+1;
+  <!-- 🎵 배경음 (자동 재생·반복) -->
+  <audio class="bgm-player" id="bgm"
+         src="[2011응원가]-나는행복합니다.mp3"
+         controls autoplay loop playsinline
+         aria-label="나는 행복합니다"></audio>
 
-for(let layer=0;layer<layerCount;layer++){
-  const radius=Math.min(BASE_RADIUS+layer*RING_GAP,0);
-  const phase=(layer%2)*(180/NUM_PETALS);
-  for(let i=0;i<NUM_PETALS;i++){
+<script>
+/* 꽃잎 생성 (JS 로직만 유지) */
+const NUM=12, BASE=-45, GAP=15, box=document.getElementById('petals');
+const layers=Math.round(Math.abs(BASE)/GAP)+1;
+for(let l=0;l<layers;l++){
+  const r=Math.min(BASE+l*GAP,0), phase=(l%2)*(180/NUM);
+  for(let i=0;i<NUM;i++){
     const p=document.createElement('div');
-    p.className='petal';p.style.opacity=0.95-layer*0.05;
-    p.style.transform=`rotate(${(360/NUM_PETALS)*i+phase}deg) translateY(${radius}px)`;
-    petalsContainer.appendChild(p);
+    p.className='petal';p.style.opacity=0.95-l*0.05;
+    p.style.transform=`rotate(${(360/NUM)*i+phase}deg) translateY(${r}px)`;
+    box.appendChild(p);
   }
 }
 </script>
