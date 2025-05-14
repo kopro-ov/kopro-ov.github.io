@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<title>Carnation – layered petals (stable)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+:root{
+  --petal-color:#e64632;
+  --petal-sub :#e95d47;
+  --stem      :#4d7c37;
+  --leaf      :#5d8d46;
+  --bg        :#fafae3;
+  --petal-size:110px;
+}
+/* ===== 공통 ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  display:flex;justify-content:center;align-items:center;
+  height:100vh;background:var(--bg);font-family:system-ui,sans-serif;
+}
+
+/* ===== 스테이지 (텍스트 + 꽃) ===== */
+.stage{
+  position:relative;width:100%;height:100%;
+  display:flex;justify-content:center;align-items:center;
+}
+
+/* ===== 인사 문구 – 고정 상단 ===== */
+.greeting{
+  position:absolute;top:40px;left:50%;
+  transform:translateX(-50%);
+  font-size:1.6rem;font-weight:600;
+  color:var(--petal-color);
+  text-align:center;
+  pointer-events:none;            /* 클릭·드래그 방지 */
+}
+
+/* ===== 흔들림 래퍼 ===== */
+.bouquet{
+  display:flex;flex-direction:column;align-items:center;
+  transform-origin:bottom center;
+  animation:sway 7s ease-in-out infinite alternate;
+  will-change:transform;
+}
+
+/* ===== 꽃 본체 (고정 회전) ===== */
+.flower{
+  display:flex;flex-direction:column;align-items:center;
+  transform:rotate(-18deg);
+}
+
+/* ===== 꽃잎 컨테이너 ===== */
+#petals{
+  position:absolute;top:-55%;left:-7%;
+  transform:translateX(-50%);
+  z-index:999;
+  will-change:transform;
+}
+
+/* ===== 꽃잎 ===== */
+.petal{
+  position:absolute;width:var(--petal-size);height:140px;
+  background:var(--petal-color);opacity:.95;
+  border-radius:50% 50% 0 0;transform-origin:bottom center;
+  clip-path:polygon(0 45%,10% 30%,20% 45%,30% 30%,40% 45%,50% 30%,60% 45%,70% 30%,80% 45%,90% 30%,100% 45%,100% 100%,0 100%);
+  backface-visibility:hidden;
+}
+.petal:nth-child(odd){background:var(--petal-sub);}
+
+/* ===== 받침 ===== */
+.calyx{
+  width:90px;height:54px;margin-top:-16px;
+  background:var(--stem);
+  clip-path:ellipse(50% 100% at 50% 100%);
+  border-radius:0 0 70% 70%;
+  z-index:1;
+}
+
+/* ===== 줄기 ===== */
+.stem{
+  position:relative;width:12px;height:280px;
+  background:var(--stem);border-radius:12px;z-index:0;
+  animation:curve 7s ease-in-out infinite alternate;
+}
+
+/* ===== 잎 ===== */
+.leaf{
+  position:absolute;width:150px;height:44px;
+  background:var(--leaf);border-radius:50% 0 50% 0;
+  transform-origin:left center;
+}
+.leaf::after{
+  content:"";position:absolute;top:50%;left:10%;
+  width:80%;height:2px;background:rgba(0,0,0,.15);
+  transform:skewY(-15deg);
+}
+.leaf1{top:90px; left:10px;transform:rotate(25deg);}
+.leaf2{top:180px;left: 8px;transform:rotate(-32deg) scaleX(-1);}
+
+/* ===== 애니메이션 정의 ===== */
+@keyframes sway  {0%{transform:rotate(-22deg);}100%{transform:rotate(-14deg);} }
+@keyframes curve {0%{transform:skewX(3deg);} 100%{transform:skewX(-3deg);} }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <!-- 인사 문구 -->
+    <h1 class="greeting">텔레닉스 구성원 모두 행복하세요</h1>
+
+    <!-- 카네이션 -->
+    <div class="bouquet">
+      <div class="flower">
+        <div id="petals"></div>
+        <div class="calyx"></div>
+        <div class="stem">
+          <div class="leaf leaf1"></div>
+          <div class="leaf leaf2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+/* ===== petals generation ===== */
+const NUM_PETALS  = 12;   // 한 줄에 배치할 꽃잎 수
+const BASE_RADIUS = -45;  // 가장 바깥 꽃잎 Y 이동값(px, 음수)
+const RING_GAP    = 15;   // 레이어 간 간격(px)
+
+const petalsContainer = document.getElementById('petals');
+const layerCount = Math.round(Math.abs(BASE_RADIUS) / RING_GAP) + 1;
+
+for (let layer = 0; layer < layerCount; layer++) {
+  const rawRadius = BASE_RADIUS + layer * RING_GAP;
+  const radius    = rawRadius < 0 ? rawRadius : 0;
+  const phase     = (layer % 2) * (180 / NUM_PETALS);
+  for (let i = 0; i < NUM_PETALS; i++) {
+    const petal = document.createElement('div');
+    petal.className = 'petal';
+    petal.style.opacity = 0.95 - layer * 0.05;
+    const angle = (360 / NUM_PETALS) * i + phase;
+    petal.style.transform = `rotate(${angle}deg) translateY(${radius}px)`;
+    petalsContainer.appendChild(petal);
+  }
+}
+</script>
+</body>
+</html>
