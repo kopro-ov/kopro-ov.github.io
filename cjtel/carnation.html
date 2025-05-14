@@ -21,31 +21,34 @@
 
 /* === 공통 === */
 *{margin:0;padding:0;box-sizing:border-box}
-body{display:flex;justify-content:center;align-items:center;
-     height:100vh;background:var(--bg);font-family:system-ui,sans-serif;}
+body{
+  display:flex;justify-content:center;align-items:center;
+  height:100vh;background:var(--bg);font-family:system-ui,sans-serif;
+}
 
-/* === 스테이지 === */
-.stage{position:relative;width:100%;height:100%;
-       display:flex;justify-content:center;align-items:center;}
+/* === 스테이지: 세로 정렬 === */
+.stage{
+  position:relative;width:100%;height:100%;
+  display:flex;flex-direction:column;         /* ↙︎ 세로 스택 */
+  justify-content:center;align-items:center;
+}
 
-/* === 인사 문구 === */
+/* === 인사 문구 – 꽃 아래 === */
 .greeting{
-  position:absolute;top:20px;left:50%;transform:translateX(-50%);
+  margin-top:32px;                            /* 꽃과 간격 */
   font-family:'Nanum Brush Script',cursive;
   font-size:2.3rem;font-weight:600;letter-spacing:-0.5px;
   color:#222;text-align:center;pointer-events:none;
-  width: 100%;
+  width:100%;
 }
-.greeting span {
-  font-size: 1.6rem;
-}
+.greeting span{font-size:1.6rem;}
 
 /* === 흔들림 래퍼 === */
 .bouquet{
-  margin-top:200px;
+  margin-top:100px;
   display:flex;flex-direction:column;align-items:center;
   transform-origin:bottom center;
-  animation:sway 7s linear infinite; 
+  animation:sway 7s linear infinite;
   will-change:transform;
 }
 
@@ -71,10 +74,8 @@ body{display:flex;justify-content:center;align-items:center;
 /* === 받침·줄기·잎 === */
 .calyx{width:90px;height:54px;margin-top:-16px;background:var(--stem);
        clip-path:ellipse(50% 100% at 50% 100%);border-radius:0 0 70% 70%;z-index:1;}
-
 .stem{position:relative;width:12px;height:280px;background:var(--stem);
       border-radius:12px;z-index:0;}
-
 .leaf{position:absolute;width:150px;height:44px;background:var(--leaf);
       border-radius:50% 0 50% 0;transform-origin:left center;}
 .leaf::after{content:"";position:absolute;top:50%;left:10%;
@@ -83,16 +84,16 @@ body{display:flex;justify-content:center;align-items:center;
 .leaf1{top:90px; left:10px;transform:rotate(25deg);}
 .leaf2{top:180px;left: 8px;transform:rotate(-32deg) scaleX(-1);}
 
-/* === 부드러운 스윙 keyframes === */
+/* === 부드러운 스윙 === */
 @keyframes sway{
-  0%   {transform:rotate(0deg);}   /* 시작 – 정면 */
-  25%  {transform:rotate(-10deg);} /* 왼쪽 */
-  50%  {transform:rotate(0deg);}   /* 중앙 통과 (멈춤 X) */
-  75%  {transform:rotate(8deg);}   /* 오른쪽 */
-  100% {transform:rotate(0deg);}   /* 중앙 통과 */
+  0%{transform:rotate(0deg);}
+  25%{transform:rotate(-10deg);}
+  50%{transform:rotate(0deg);}
+  75%{transform:rotate(8deg);}
+  100%{transform:rotate(0deg);}
 }
 
-/* 오디오 플레이어 고정 */
+/* === 오디오 플레이어 === */
 .bgm-player{
   position:fixed;bottom:16px;left:50%;transform:translateX(-50%);
   width:240px;outline:none;
@@ -101,8 +102,7 @@ body{display:flex;justify-content:center;align-items:center;
 </head>
 <body>
   <div class="stage">
-    <div class="greeting">텔레닉스 구성원 모두 행복하세요 😊<br /><span>- 고보연 드림 -</span></div>
-
+    <!-- 카네이션 -->
     <div class="bouquet">
       <div class="flower">
         <div id="petals"></div>
@@ -113,6 +113,11 @@ body{display:flex;justify-content:center;align-items:center;
         </div>
       </div>
     </div>
+
+    <!-- 인사 문구 -->
+    <div class="greeting">
+      텔레닉스 구성원 모두 행복하세요 😊<br /><span>- 고보연 드림 -</span>
+    </div>
   </div>
 
   <!-- 🎵 배경음 (자동 재생·반복) -->
@@ -122,7 +127,7 @@ body{display:flex;justify-content:center;align-items:center;
          aria-label="나는 행복합니다"></audio>
 
 <script>
-/* 꽃잎 생성 (JS 로직만 유지) */
+/* 꽃잎 생성 */
 const NUM=12, BASE=-45, GAP=15, box=document.getElementById('petals');
 const layers=Math.round(Math.abs(BASE)/GAP)+1;
 for(let l=0;l<layers;l++){
